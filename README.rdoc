@@ -1,0 +1,24 @@
+= JQuery Quote Rotator Plugin.
+
+Here's a jQuery plugin that rotates through list items with a nice fade effect. You may nest any type of element you like inside a given list item.
+
+== How to make it work.
+
+Drop these scripts in your header:
+   <script src="js/jquery-1.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+   <script src="js/jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
+
+Call the function to any list element:
+    $(document).ready(function() {
+        $('ul#quotes').quote_rotator();
+    });
+
+
+== Configuration options.
+
+    $('ul#quotes').quote_rotator({ 
+         rotation_speed: 7000    // defaults to 5000
+         pause_on_hover: false   // defaults to true
+    });
+
+I've also built in a default to pause rotation on mouse hover. This is nice if you're rotating through links or other elements that you might not want fading away from the user.

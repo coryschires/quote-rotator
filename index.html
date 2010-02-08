@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Quote Rotator</title>
+
+<!-- javascripts -->
+<script src="js/jquery-1.4.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		$('ul#quotes').quote_rotator();
+	});
+</script>
+
+<style type="text/css" media="screen">
+    #quotes { list-style: none; width: 300px; cursor: pointer; }
+    #quotes blockquote { list-style: none; margin: 0;}    
+</style>
+
+</head>
+<body>
+  
+    <ul id="quotes">
+        <li>
+            <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit!</blockquote>
+            <cite>&mdash; Alabama</cite>
+        </li>
+        <li>
+            <blockquote>Excepteur sint occaecat cupidatat non proident!</blockquote>
+            <cite>&mdash; Georgia</cite>
+        </li>
+        <li>
+            <blockquote>Duis aute irure dolor in reprehenderit?</blockquote>
+            <cite>&mdash; Illinois</cite>
+        </li>
+        <li>
+            <blockquote>Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+            sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>
+            <cite>&mdash; West Virginia</cite>
+        </li>
+    </ul>  
+    
+</body>
+</html>
