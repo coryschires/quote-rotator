@@ -17,7 +17,7 @@ Call the function to any list element:
 == Configuration options.
 
     $('ul#quotes').quote_rotator({ 
-         rotation_speed: 7000    // defaults to 5000
+         rotation_speed: 7000,    // defaults to 5000
          pause_on_hover: false   // defaults to true
     });
 
