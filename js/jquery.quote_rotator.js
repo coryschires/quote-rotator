@@ -33,32 +33,27 @@
             return this.each(function() {
                 
                 // cache for selector performance
-                var $quote_list = $(this);
+                var quote_list = $(this);
                 
                 // prevent dummies from setting the rotation speed too fast
-                if (config.rotation_speed < 2000) {
-                    var rotation_speed = 2000
-                } else {
-                    var rotation_speed = config.rotation_speed                    
-                };
-                
-                
+				var rotation_speed = config.rotation_speed < 2000 ? 2000 : config.rotation_speed;                   
+
                 // hide all the quotes
-                $quote_list.find('li').hide();
+                quote_list.find('li').hide();
 
                 // apply active class to first quote unless already applied elsewhere
-                if (! ($quote_list.find('li.active')).length ) {
-                    $('li:first', $quote_list).addClass('active');
+                if (! (quote_list.find('li.active')).length ) {
+                    $('li:first', quote_list).addClass('active');
                 };
                 
                 // show the active quote 
-                $quote_list.find('li.active').show();
+                quote_list.find('li.active').show();
                 
                 // activate quote rotation
-                rotation_active = true;
+                var rotation_active = true;
 
                 // stop quote rotation on hover
-                $quote_list.hover(function() {
+                quote_list.hover(function() {
                     if (config.pause_on_hover) {rotation_active = false};
                 }, function() {
                     rotation_active = true
@@ -68,20 +63,20 @@
                 setInterval(function(){
                     if (rotation_active) {
                                             
-                        var $active_quote = $quote_list.find('li.active');        
-                        var $next_quote =  $active_quote.next().length ? $active_quote.next() : $quote_list.find('li:first');
+                        var active_quote = quote_list.find('li.active');        
+                        var next_quote =  active_quote.next().length ? active_quote.next() : quote_list.find('li:first');
 
                         // rotate quotes with fade effect
-                        $active_quote.animate({
-                            opacity: 0, // fade out active quote
+                        active_quote.animate({
+                            opacity: 0 // fade out active quote
                         }, 1000, function() {                        
-                            $active_quote.hide().css('opacity', 1); // hide and reset opacity
-                            $next_quote.fadeIn(1000); // fade in next quote
+                            active_quote.hide().css('opacity', 1); // hide and reset opacity
+                            next_quote.fadeIn(1000); // fade in next quote
                         });
 
                         // swap the class to prepare for the next fade effect interal
-                        $active_quote.removeClass('active');         
-                        $next_quote.addClass('active');
+                        active_quote.removeClass('active');         
+                        next_quote.addClass('active');
                     };
 
                 }, rotation_speed);  
