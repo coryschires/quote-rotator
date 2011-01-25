@@ -13,12 +13,14 @@ Call the function to any list element:
         $('ul#quotes').quote_rotator();
     });
 
+You can specify which quote you'd like to show first by adding a class of <tt>active</tt> to the list item. If you don't explicitly add an <tt>active</tt> class, it will default to the first item in the list.
 
 == Configuration options.
 
     $('ul#quotes').quote_rotator({ 
-         rotation_speed: 7000,    // defaults to 5000
-         pause_on_hover: false   // defaults to true
+         rotation_speed: 7000,          // defaults to 5000
+         pause_on_hover: false          // defaults to true
+         randomize_first_quote: true    // defaults to false
     });
 
 I've also built in a default to pause rotation on mouse hover. This is nice if you're rotating through links or other elements that you might not want fading away from the user.
