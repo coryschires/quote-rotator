@@ -5,7 +5,7 @@ Here's a jQuery plugin that rotates through list items with a nice fade effect. 
 == How to make it work.
 
 Drop these scripts in your header:
-   <script src="js/jquery-1.4.1.min.js" type="text/javascript" charset="utf-8"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
    <script src="js/jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
 
 Call the function to any list element:
