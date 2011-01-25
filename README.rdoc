@@ -19,7 +19,7 @@ You can specify which quote you'd like to show first by adding a class of <tt>ac
 
     $('ul#quotes').quote_rotator({ 
          rotation_speed: 7000,          // defaults to 5000
-         pause_on_hover: false          // defaults to true
+         pause_on_hover: false,         // defaults to true
          randomize_first_quote: true    // defaults to false
     });
 
