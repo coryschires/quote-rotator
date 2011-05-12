@@ -1,6 +1,6 @@
 = JQuery Quote Rotator Plugin.
 
-Here's a jQuery plugin that rotates through list items with a nice fade effect. You may nest any type of element you like inside a given list item. Here's a {live demo}[http://coryschires.com/jquery-quote-rotator-plugin/].
+Here's a jQuery plugin that rotates through list items with a nice fade effect. You may nest any type of element you like inside a given list item. Here's a {live demo on my blog}[http://coryschires.com/jquery-quote-rotator-plugin/] or on the {github demo page}[http://coryschires.github.com/quote-rotator/] for this project.
 
 == How to make it work.
 
