@@ -35,7 +35,7 @@
                 var list_items = quote_list.find('li');
                 
                 // prevent dummies from setting the rotation speed too fast
-                var rotation_speed = config.rotation_speed < 2000 ? 2000 : config.rotation_speed;                   
+                var rotation_speed = config.rotation_speed < 2000 ? 2000 : config.rotation_speed;
 
                 // hide all the quotes
                 list_items.hide();
@@ -67,7 +67,7 @@
                 setInterval(function(){
                     if (rotation_active) {
                         
-                        var active_quote = quote_list.find('li.active');        
+                        var active_quote = quote_list.find('li.active');
                         var next_quote =  active_quote.next().length ? active_quote.next() : quote_list.find('li:first');
 
                         // rotate quotes with fade effect
