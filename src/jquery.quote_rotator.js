@@ -10,7 +10,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 0.1.0
+ * Version: 0.1.1
  */
 
 (function($) {
@@ -19,7 +19,8 @@
     defaults: {
       rotation_speed: 5000,
       pause_on_hover: true,
-      randomize_first_quote: false
+      randomize_first_quote: false,
+      buttons: false
     }
   }
 
@@ -39,18 +40,19 @@
 
                 // hide all the quotes
                 list_items.hide();
-
-                // apply active to random quote if specified
-                if (config.randomize_first_quote) {
-                  var random = Math.floor( Math.random() * (list_items.length) );
-                  $(list_items[random]).addClass('active');
-
-                // otherwise apply active to first quote unless already applied in the html
-                } else if (! (quote_list.find('li.active')).length ) {
-                    $('li:first', quote_list).addClass('active');
-                };
                 
-                // show the active quote 
+                var add_active_class_to_quote = function() {
+                  if (config.randomize_first_quote) {
+                    var random = Math.floor( Math.random() * (list_items.length) );
+                    $(list_items[random]).addClass('active');
+                    
+                  // otherwise apply active to first quote unless already applied in the html
+                  } else if (! (quote_list.find('li.active')).length ) {
+                      $('li:first', quote_list).addClass('active');
+                  }
+                }();
+                
+                // show the active quote
                 quote_list.find('li.active').show();
                 
                 // activate quote rotation
