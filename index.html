@@ -1,32 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
-
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Quote Rotator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Quote Rotator</title>
 
-<!-- javascripts -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="https://github.com/coryschires/quote-rotator/raw/master/jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
+    <!-- javascripts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://github.com/coryschires/quote-rotator/raw/master/src/jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" charset="utf-8">
-	$(document).ready(function() {
-		$('ul#quotes').quote_rotator();
-	});
-</script>
 
-<style type="text/css" media="screen">
-    #quotes { list-style: none; width: 300px; cursor: pointer; }
-    #quotes blockquote { list-style: none; margin: 0; }
-    #documentation { float: right; }
-</style>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('ul#quotes').quote_rotator();
+            $('ul#button_quotes').quote_rotator({
+                buttons: { next: '>>', previous: '<<' }
+            });
+        });
+    </script>
+
+    <style type="text/css" media="screen">
+        body { font-family: helvetica, verdana, sans-serif; }
+        em { color: #95A105; font-style: normal; }
+        #documentation { float: right; }
+        #page_wrap { margin: 0 auto; width: 800px; }
+        .example { clear: both; height: 210px; }
+        h3 { border-bottom: 2px #e0e0e0 solid; padding-bottom: 3px; margin-top: 30px; }
+        pre { background: #e0e0e0; padding: 20px 30px 20px 0; float: right; min-width: 350px; margin: 0; }
+        ul { list-style: none; width: 300px; cursor: pointer; margin: 0; padding: 0; }
+        ul blockquote { list-style: none; margin: 0; }
+    </style>
 
 </head>
 <body>
+
+<div id="page_wrap">
     <a href="https://github.com/coryschires/quote-rotator" id="documentation">Back to the documentation</a>
-    <h1>jQuery Quote Rotator Plugin</h1>
-  
+    <h1>jQuery <em>Quote Rotator</em> Plugin</h1>
+    
+<div class="example">
+    <h3>Basic example using default configuration</h3>
+    
+    <pre>
+    $('ul#quotes').quote_rotator();</pre>
+    
     <ul id="quotes">
         <li>
             <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit!</blockquote>
@@ -45,7 +61,41 @@
             sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>
             <cite>&mdash; West Virginia</cite>
         </li>
+    </ul>
+     
+</div><!--example-->
+
+<div class="example">
+    <h3>Example using next/previous buttons</h3>
+
+    <pre>
+    $('ul#button_quotes').quote_rotator({
+        buttons: {
+            next: '>>',
+            previous: '<<'                
+        }
+    });</pre>
+    <ul id="button_quotes">
+        <li>
+            <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit!</blockquote>
+            <cite>&mdash; Alabama</cite>
+        </li>
+        <li>
+            <blockquote>Excepteur sint occaecat cupidatat non proident!</blockquote>
+            <cite>&mdash; Georgia</cite>
+        </li>
+        <li>
+            <blockquote>Duis aute irure dolor in reprehenderit?</blockquote>
+            <cite>&mdash; Illinois</cite>
+        </li>
+        <li>
+            <blockquote>Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+            sunt in culpa qui officia deserunt mollit anim id est laborum.</blockquote>
+            <cite>&mdash; West Virginia</cite>
+        </li>
     </ul>  
-    
+</div><!--example-->
+</div><!-- page_wrap -->
+
 </body>
 </html>
