@@ -5,19 +5,23 @@
     <title>Quote Rotator</title>
 
     <!-- javascripts -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="src/jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
+
 
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
             $('ul#quotes').quote_rotator();
-            $('ul#quotes_with_buttons').quote_rotator();
+            $('ul#button_quotes').quote_rotator({
+                buttons: { next: '>>', previous: '<<' }
+            });
         });
     </script>
 
     <style type="text/css" media="screen">
         body { font-family: helvetica, verdana, sans-serif; }
         em { color: #95A105; font-style: normal; }
+        #documentation { float: right; }
         #page_wrap { margin: 0 auto; width: 800px; }
         .example { clear: both; height: 210px; }
         h3 { border-bottom: 2px #e0e0e0 solid; padding-bottom: 3px; margin-top: 30px; }
@@ -30,15 +34,14 @@
 <body>
 
 <div id="page_wrap">
+    <a href="https://github.com/coryschires/quote-rotator" id="documentation">Back to the documentation</a>
     <h1>jQuery <em>Quote Rotator</em> Plugin</h1>
     
 <div class="example">
     <h3>Basic example using default configuration</h3>
     
     <pre>
-    $(document).ready(function() {
-        $('ul#quotes').quote_rotator();
-    });</pre>
+    $('ul#quotes').quote_rotator();</pre>
     
     <ul id="quotes">
         <li>
@@ -66,15 +69,13 @@
     <h3>Example using next/previous buttons</h3>
 
     <pre>
-    $(document).ready(function() {
-        $('ul#quotes_with_buttons').quote_rotator({
-            buttons: {
-                next: '>>',
-                prev: '<<'                
-            }
-        });
+    $('ul#button_quotes').quote_rotator({
+        buttons: {
+            next: '>>',
+            previous: '<<'                
+        }
     });</pre>
-    <ul id="quotes_with_buttons">
+    <ul id="button_quotes">
         <li>
             <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit!</blockquote>
             <cite>&mdash; Alabama</cite>

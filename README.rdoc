@@ -5,7 +5,7 @@ Here's a jQuery plugin that rotates through list items with a nice fade effect. 
 == How to make it work.
 
 Drop these scripts in your header:
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js" type="text/javascript"></script>
    <script src="js/jquery.quote_rotator.js" type="text/javascript" charset="utf-8"></script>
 
 Call the function to any list element:
@@ -18,9 +18,23 @@ You can specify which quote you'd like to show first by adding a class of <tt>ac
 == Configuration options.
 
     $('ul#quotes').quote_rotator({ 
-         rotation_speed: 7000,          // defaults to 5000
-         pause_on_hover: false,         // defaults to true
-         randomize_first_quote: true    // defaults to false
+         rotation_speed: 7000,                    // defaults to 5000
+         pause_on_hover: false,                   // defaults to true
+         randomize_first_quote: true              // defaults to false
+         buttons: { next: '>>', previous: '<<' }  // defaults to false 
     });
 
-I've also built in a default to pause rotation on mouse hover. This is nice if you're rotating through links or other elements that you might not want fading away from the user.
+Rotation will pause on mouse hover by default. This is nice if you're rotating through links or other elements that you might not want fading away from the user.
+
+Also notice that next/previous buttons are not included by default. If you want buttons you need override the <tt>buttons</tt> option. As in the example above, you'll need to set a simple javascript object with <tt>next</tt> and <tt>previous</tt> keys. The values will be used as text for your buttons.
+
+== Change log.
+<b>0.1.0</b>
+* Added MIT and GPL licenses
+* New config option to randomize first quote on page load.
+
+<b>1.0</b>
+* Added unit tests using Jasmine
+* Revamped demo page and gh-page
+* Significant refactoring
+* Added support for next/previous buttons ({issue #2}[https://github.com/coryschires/quote-rotator/issues/2])

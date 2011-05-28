@@ -10,7 +10,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 0.1.1
+ * Version: 1.0.0
  */
 
 (function($) {
@@ -24,71 +24,87 @@
     }
   }
 
-    $.fn.extend({
-        quote_rotator: function(config) {
-
-            var config = $.extend({}, $.quote_rotator.defaults, config);
-
-            return this.each(function() {
-                
-                // cache for selector performance
-                var quote_list = $(this);
-                var list_items = quote_list.find('li');
-                
-                // prevent dummies from setting the rotation speed too fast
-                var rotation_speed = config.rotation_speed < 2000 ? 2000 : config.rotation_speed;
-
-                // hide all the quotes
-                list_items.hide();
-                
-                var add_active_class_to_quote = function() {
-                  if (config.randomize_first_quote) {
-                    var random = Math.floor( Math.random() * (list_items.length) );
-                    $(list_items[random]).addClass('active');
-                    
-                  // otherwise apply active to first quote unless already applied in the html
-                  } else if (! (quote_list.find('li.active')).length ) {
-                      $('li:first', quote_list).addClass('active');
-                  }
-                }();
-                
-                // show the active quote
-                quote_list.find('li.active').show();
-                
-                // activate quote rotation
-                var rotation_active = true;
-
-                // stop quote rotation on hover
-                quote_list.hover(function() {
-                    if (config.pause_on_hover) {rotation_active = false};
-                }, function() {
-                    rotation_active = true
-                });
-                
-                // rotate quotes
-                setInterval(function(){
-                    if (rotation_active) {
-                        
-                        var active_quote = quote_list.find('li.active');
-                        var next_quote =  active_quote.next().length ? active_quote.next() : quote_list.find('li:first');
-
-                        // rotate quotes with fade effect
-                        active_quote.animate({
-                            opacity: 0 // fade out active quote
-                        }, 1000, function() {
-                            active_quote.hide().css('opacity', 1); // hide and reset opacity
-                            next_quote.fadeIn(1000); // fade in next quote
-                        });
-                        
-                        // swap the class to prepare for the next fade effect interal
-                        active_quote.removeClass('active');
-                        next_quote.addClass('active');
-                    };
-                    
-                }, rotation_speed);
-                
-            })
+  $.fn.extend({
+    quote_rotator: function(config) {
+      
+      var config = $.extend({}, $.quote_rotator.defaults, config);
+      
+      return this.each(function() {
+        var rotation;
+        var quote_list = $(this);
+        var list_items = quote_list.find('li');
+        var rotation_active = true;
+        var rotation_speed = config.rotation_speed < 2000 ? 2000 : config.rotation_speed;
+        
+        var add_active_class = function() {
+          var active_class_not_already_applied = quote_list.find('li.active').length === 0;
+          if (config.randomize_first_quote) {
+            var random_list_item = $(list_items[Math.floor( Math.random() * (list_items.length) )]);
+            random_list_item.addClass('active');
+          } else if (active_class_not_already_applied) {
+              quote_list.find('li:first').addClass('active');
+          }
+        }();
+        
+        var get_next_quote = function(quote) {
+          return quote.next('li').length ? quote.next('li') : quote_list.find('li:first');
         }
-    })
+        
+        var get_previous_quote = function(quote) {
+          return quote.prev('li').length ? quote.prev('li') : quote_list.find('li:last');
+        }
+        
+        var rotate_quotes = function(direction) {
+          var active_quote = quote_list.find('li.active');
+          var next_quote = direction === 'forward' ? get_next_quote(active_quote) : get_previous_quote(active_quote)
+          
+          active_quote.animate({
+            opacity: 0
+          }, 1000, function() {
+            active_quote.hide().css('opacity', 1);
+            next_quote.fadeIn(1000);
+          });
+          
+          active_quote.removeClass('active');
+          next_quote.addClass('active');
+        };
+        
+        var start_automatic_rotation = function() {
+          rotation = setInterval(function() {
+            if (rotation_active) { rotate_quotes('forward'); }
+          }, rotation_speed);
+        };
+
+        var pause_rotation_on_hover = function() {
+          quote_list.hover(function() {
+            rotation_active = false;
+          }, function() {
+            rotation_active = true;
+          });
+        };
+        
+        var include_next_previous_buttons = function() {
+          quote_list.append(
+            '<div class="qr_buttons">\
+              <button class="qr_previous">'+ config.buttons.previous +'</button>\
+              <button class="qr_next">'+ config.buttons.next +'</button>\
+            </div>'
+          );
+          quote_list.find('button').click(function() {
+            clearInterval(rotation);
+            rotate_quotes( $(this).hasClass('qr_next') ? 'forward' : 'backward' );
+            start_automatic_rotation();
+          });
+        };
+        
+        if (config.buttons) { include_next_previous_buttons(); }
+        if (config.pause_on_hover) { pause_rotation_on_hover(); }
+        
+        list_items.not('.active').hide();
+        
+        start_automatic_rotation();
+      })
+    }
+  })
 
 })(jQuery);
