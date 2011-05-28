@@ -26,12 +26,12 @@ You can specify which quote you'd like to show first by adding a class of <tt>ac
 
 Rotation will pause on mouse hover by default. This is nice if you're rotating through links or other elements that you might not want fading away from the user.
 
-Also notice that next/previous buttons are not included by default. If you want buttons you need override the <tt>buttons</tt> option. As in the example above, you'll need to set a simple javascript object with <tt>next</tt> and <tt>previous</tt> keys. The values will be used as text for your buttons.
+Also notice that next/previous buttons are not included by default. If you want buttons, you need override the <tt>buttons</tt> option. As in the example above, assign a javascript object with <tt>next</tt> and <tt>previous</tt> keys. The values will be used as text for your buttons.
 
 == Change log.
 <b>0.1.0</b>
 * Added MIT and GPL licenses
-* New config option to randomize first quote on page load.
+* New config option to randomize first quote on page load
 
 <b>1.0</b>
 * Added unit tests using Jasmine
