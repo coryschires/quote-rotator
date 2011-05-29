@@ -61,7 +61,8 @@
           active_quote.animate({
             opacity: 0
           }, 1000, function() {
-            active_quote.hide().css('opacity', 1);
+            active_quote.hide();
+            list_items.css('opacity', 1);
             next_quote.fadeIn(1000);
           });
           
